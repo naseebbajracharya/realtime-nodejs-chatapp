@@ -1,0 +1,242 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/group.css">
+    <title>Realtime ChatApp</title>
+
+  </head>
+
+  <body>
+
+    <%- include ('../partials/navbar') %>
+   
+
+    <div class="container">
+            <div class="col-md-12">
+        
+
+                    <div class="col-md-12">
+                        <div class="chat_container" >
+                            <div class="row">
+                                
+                                <div class="col-sm-4 col-md-3 mob-clearfix" >
+                                    <div class="row">
+                                        <div class="col-md-12">
+                                            <div class="card-container" style="margin-top:65px;">
+                                                <div class="card">
+                                                    <div class="front">
+                                                        <div class="cover">
+            
+                                                        </div>
+                                                        <div class="user img-thumbnail">
+                                                            <img src="https://placehold.it/300x300" class="img-circle" alt="">
+                                                        </div>
+                                                        <div class="content">
+                                                            <div class="main">
+                                                                <h3 class="name">Username || Fullname</h3>
+                                                                <p class="profession-online">
+                                                                    <i class="fa fa-circle online" aria-hidden="true"></i>
+                                                                    Online
+                                                                </p>
+                                                                <p class="text-center">
+                                                                    Mantra
+                                                                </p>
+                                                            </div>
+                                                            <div class="footer">
+                                                                <i class="fa fa-mail-forward"></i> 
+                                                                <a href="#">
+                                                                  View My Profile
+                                                                </a>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+            
+                                    <div class="row" style="margin-top:1px;">
+                                        <div class="col-md-12">
+                                            <div class="card-container">
+                                                <div class="card">
+                                                    <div class="front">
+            
+                                                        <div class="content main-scroll">
+                                                            <div class="main" id="main_scroll">
+                                                                <p class="friends text-center" style="margin-bottom:0px;">
+                                                                    Online Friends <span id="numOfFriends"></span>
+                                                                </p>
+                                                                <hr style="margin-top:10px" />
+                                                                
+                                                                <div class="onlineFriends"></div>
+            
+                                                            </div>
+            
+                                                        </div>
+                                                    </div>
+            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+            
+            
+                                
+                                <div class="col-sm-5 col-md-6 message_section">
+                                    <div class="row" style="margin-top:65px;">
+                                        <div class="new_message_head">
+                                            <div class="text-center">
+                                            <button class="group_name">
+                                              Group Name
+                                            </button>
+                                            </div>
+                                            <div class="pull-right">
+                                            </div>
+                                        </div>
+            
+                                        <div class="chat_area">
+                                            <ul id="messages" class="list-unstyled">
+                                                <!-- <li class="left">
+                                                    <span class="chat-img1 pull-left">
+                                                        <img src="http://placehold.it/300x300" class="img-thumbnail" alt="">
+                                                    </span>
+                                                    <div class="chat-body1">
+                                                        <span class="chat-name">
+                                                            Username
+                                                        </span>
+                                                        <br>
+                                                        Message Bulk
+                                                    </div>
+                                                </li> -->
+                                            </ul>
+
+                                            
+
+                                            <script id="message-template" type="text/template">
+                                                <li class="left">
+                                                    <span class="chat-img1 pull-left">
+                                                        <img src="http://placehold.it/300x300" class="img-thumbnail" alt="">
+                                                    </span>
+                                                    <div class="chat-body1">
+                                                        <span class="chat-name">
+                                                            {{sender}}
+                                                        </span>
+                                                        <br>
+                                                        {{text}}
+                                                    </div>
+                                                </li>
+                                            </script>
+                                        </div>
+            
+                                        <div class="message_write">
+                                          <form id="message-form" method="post">
+                                            <input type="hidden" id="groupName" value="<%= groupName %>">
+                                            <input type="hidden" name="sender" id="sender" value="<%= user.username %>">
+
+                                              <textarea class="form-control" name="message" id="msg" placeholder="Type your message"></textarea>
+                                              <div class="clearfix"></div>
+                                              <div class="chat_bottom">
+                                                  <button id="send-message" class="pull-right btn btn-success">
+                                                      Send
+                                                  </button>
+                                              </div>
+                                          </form>
+                                        </div>
+                                    </div>
+                                </div>
+            
+                                <div class="col-sm-3 col-md-3 mob-50 mob-clearfix" style="margin-top:65px;">
+            
+            
+                                    <div class="new_message_head">
+                                        <div class="text-center">
+                                            <button class="group_m">
+                                                <i class="fa fa-users" aria-hidden="true" style="padding-right:15px;"></i>
+                                                Active Members: <span id="numValue" style="color:green"></span>
+                                            </button>
+                                        </div>
+                                    </div>
+            
+            
+            
+                                    <div class="gr-rightsidebar">
+            
+                                        <div id="myModal" class="modal fade" role="dialog">
+                                          <div class="modal-dialog">
+            
+                                            <div class="modal-content">
+                                              <div class="modal-header">
+                                                <button type="button" class="close" data-dismiss="modal">&times;</button>
+                                                <h3 class="modal-title" id="name"></h3>
+                                              </div>
+                                              <div class="modal-body">
+                                                <form action="" method="get" id="add_friend">
+                                                    <input type="hidden" name="receiverName" id="receiverName" value="">
+                                                    <input type="hidden" name="sender-name" id="sender-name" value="<%= user.username %>">
+                                                    <button type="submit" id="friend-add" class="btn btn-success add"><i class="fa fa-user"></i> Send Friend Request</button>
+                                                    
+                                                    <a id="nameLink" class="btn btn-warning">View Profile</a>
+            
+                                                    <div id="myTest">
+                                                        
+                                                    </div>
+                                                </form>
+                                              </div>
+                                              <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger btn_close" data-dismiss="modal">Close</button>
+                                              </div>
+                                            </div>
+            
+                                          </div>
+                                        </div>
+            
+                                        <div class="col-md-12"  id="main">
+                                            <div id="users"></div>
+                                            
+                                        </div>
+            
+                                    </div>
+                                </div>
+            
+                            </div>
+            
+                        </div>
+            
+                    </div>
+                </div>  
+        
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2020 Company, Inc.</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/group/gc.js"></script>
+    <script src="/js/group/sendrequest.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/3.1.0/mustache.js"></script>
+  </body>
+</html>
+
+
+

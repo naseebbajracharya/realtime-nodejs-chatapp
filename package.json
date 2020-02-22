@@ -1,0 +1,42 @@
+{
+  "name": "realtime-chatapp",
+  "version": "1.0.0",
+  "description": "RealTime Nodejs Chat Application",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/naseebbajracharya/realtime-nodejs-chatapp.git"
+  },
+  "author": "Naseeb Bajracharya",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/naseebbajracharya/realtime-nodejs-chatapp/issues"
+  },
+  "homepage": "https://github.com/naseebbajracharya/realtime-nodejs-chatapp#readme",
+  "dependencies": {
+    "async": "^3.1.1",
+    "aws-sdk": "^2.621.0",
+    "bcrypt-nodejs": "0.0.3",
+    "body-parser": "^1.19.0",
+    "connect-flash": "^0.1.1",
+    "connect-mongo": "^3.2.0",
+    "cookie-parser": "^1.4.4",
+    "dependable": "^1.1.0",
+    "ejs": "^3.0.1",
+    "express": "^4.17.1",
+    "express-promise-router": "^3.0.3",
+    "express-session": "^1.17.0",
+    "express-validator": "^5.3.1",
+    "formidable": "^1.2.1",
+    "lodash": "^4.17.15",
+    "mongoose": "^5.9.1",
+    "multer": "^1.4.2",
+    "multer-s3": "^2.9.0",
+    "passport": "^0.4.1",
+    "passport-local": "^1.0.0",
+    "socket.io": "^2.3.0"
+  }
+}
