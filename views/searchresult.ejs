@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
+    <link rel="stylesheet" href="/css/login.css">
+    <title>Realtime ChatApp</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+    <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/home.css">
+
+    <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
+
+
+  </head>
+
+  <body>
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+              <div class="navbar-header">
+                <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
+                  <span class="sr-only">Toggle navigation</span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                  <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/home">ChatApp</a>
+              </div>
+              <div id="navbar" class="navbar-collapse collapse">
+                <!-- <form class="navbar-form navbar-right" action="/">
+                  <button type="submit" class="btn btn-success">Login</button>
+                </form>
+        
+                <form class="navbar-form navbar-right" action="/signup">
+                  <button type="submit" class="btn btn-success">Sign Up</button>
+                </form> -->
+                <ul class="nav navbar-nav">
+                  </ul>
+                  <ul class="nav navbar-nav navbar-right" id="reload">
+
+                    <li><a href="#">Members</a></li>
+                    <li class="dropdown">
+                      <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false"><%= user.username %> <span class="caret"></span></a>
+                      <ul class="dropdown-menu">
+                        <li><a href="#">Action</a></li>
+                        <li role="separator" class="divider"></li>
+                        <li><a href="/logout"><span class="fa fa-sign-out" style="color:maroon"></span> Logout</a></li>
+                      </ul>
+                    </li>
+
+                  </ul>
+              </div>
+            </div>
+          </nav>
+   
+
+    <div class="container">
+        <div class="col-md-12">
+            <form action="/searchresult" method="post">
+                <div class="form-group ad-30" style="margin-top:65px;">
+                     <div class="input-group search-style">
+                         <input class="form-control new-search-bar"  name="tagline" id="search" placeholder="Enter Your Group Name" type="text">
+                         <span class="input-group-btn">
+                             <button class="btn btn-primary input-btn" type="" id="search-form">Search</button>
+                         </span>
+                     </div>
+                 </div>
+            </form>
+         </div>
+           
+         <div class="col-md-12">
+             <input type="hidden" value="<%= user.username %>" id="name-user">
+             <input type="hidden" value="<%= user.userImage %>" id="name-user">
+             <div class="">
+                 <div class="row">
+                        <div>
+                                <% _.forEach(chunks, function(val){ %>
+                                <div class="category-list">
+                                    <div class="row">
+                                           <% _.forEach(val, function(val2){ %>
+                                        <form action="/home" method="post" id="favourite">
+                                            <div class="item col-md-3">
+                                                <div class="thumbnail">
+                                                   <img src="https://realtime-chatapp.s3.us-east-2.amazonaws.com/<%= val2.image %>" alt="Group Photo">
+                                                    <div class="caption">
+                                                        <h4>
+                                                            <%= val2.name %> (<%=val2.followers.length %>)
+                                                           </h4>
+                                                        
+                                                        <div class="row">
+                                                            <div class="col-md-12">
+                                                                <p><i>
+                                                                       <%= val2.tagline %>
+                                                                   </i>
+                                                                </p>
+                                                            </div>
+                                                            
+                                                            <div class="col-md-12">
+                                                                
+                                                                   <div class="btn-group" role="group" aria-label="...">
+                                                                       
+                                                                           <input type="hidden" name="id" id="id" value="<%= val2._id %>">
+                                                                           <input type="hidden" name="groupName" id="group_Name" value="<%= val2.name %>">
+                                                                           <button type="submit" class="btn btn-primary pull-left">Add To Favourite</button>
+                                                                     
+                                                                   </div>
+                                                              
+                                                                   <div class="btn-group" role="group" aria-label="...">
+                                                                           <a href="/group/<%= val2.name %>"><button type="button" class="btn btn-success pull-right">Enter</button></a>
+                                                                   </div>
+                                                              
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                        <% }) %>
+                                    </div>
+                                </div>
+                                <% }) %>
+                            </div>
+                     </div>
+                 </div>
+             </div>
+         </div>
+
+      <hr>
+
+      <footer>
+        <p>&copy; 2016 Company, Inc.</p>
+      </footer>
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+<script src="/socket.io/socket.io.js"></script>
+<script src="/js/group/sendrequest.js"></script>  
+<script src="/js/home.js"></script> 
+<script src="/js/global.js"></script> 
+</body>
+</html>
+
+
+
