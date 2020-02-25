@@ -54,7 +54,7 @@ passport.use('local.login', new LocalStrategy({
 
         const messages = [];
         if(!user || !user.validUserPassword(password)){
-            messages.push('Email / Password doesnot match');
+            messages.push('Email/Password doesnot match');
             return done(null, false, req.flash('error', messages));
         }
        

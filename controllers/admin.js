@@ -1,4 +1,3 @@
-
 module.exports = function(formidable, Group, aws){
     return {
         SetRouting: function(router){

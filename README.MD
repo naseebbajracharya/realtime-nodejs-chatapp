@@ -1,2 +1,13 @@
-Realtime Chat Application using Nodejs, MongoDB, SocketIO, AWS S3 Storage. . . .
-UNDER DEVELOPMENT
+***RealTime Chat Application***
+
+# UNDER DEVELOPMENT
+
+**Technologies Used**
+- Nodejs 
+- MongoDB
+- SocketIO 
+- AWS S3 Storage
+- Bootstrap
+- ExpressJs
+
+

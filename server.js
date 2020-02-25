@@ -12,15 +12,23 @@ const flash = require('connect-flash');
 const passport = require('passport');
 const socketIO = require('socket.io');
 
+//Loading Keys
+const Keys = require('./secret/secret');
+
 const {Users} = require('./helpers/UsersClass')
 const {Global} = require('./helpers/Global');
 
 const container = require('./container');
 
-container.resolve(function(users, _, admin, home, group){
+container.resolve(function(users, _, admin, home, group, searchresult, privatechat){
     //MongoDB Connections
     mongoose.Promise = global.Promise;
-    mongoose.connect('MONGODB_CONNECTION_HERE')
+    mongoose.connect(Keys.MongoDB,
+        { useUnifiedTopology: true, 
+        useNewUrlParser: true })
+        .then(() => {
+            console.log('Server is connected to MongoDB')
+        })
 
     const app = SetupExpress();
 
@@ -40,6 +48,7 @@ container.resolve(function(users, _, admin, home, group){
         require('./socketIO/gc')(io, Users);
         require('./socketIO/friend')(io);
         require('./socketIO/globalroom')(io, Global, _);
+        require('./socketIO/pvtmsg')(io);
 
         //Setting up express router
         const router = require('express-promise-router')();
@@ -47,6 +56,8 @@ container.resolve(function(users, _, admin, home, group){
         admin.SetRouting(router);
         home.SetRouting(router);
         group.SetRouting(router);
+        searchresult.SetRouting(router);
+        privatechat.SetRouting(router);
         
         app.use(router);
     }
@@ -62,7 +73,7 @@ container.resolve(function(users, _, admin, home, group){
 
         app.use(validator());
         app.use(session({
-            secret: 'SECRET_KEY',
+            secret: Keys.secret,
             resave: true,
             saveUninitialized: true,
             store: new MongoStore({mongooseConnection: mongoose.connection})

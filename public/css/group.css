@@ -272,7 +272,21 @@ member_list li:hover {
     padding-top: 15px;
     background: white;
     float: left;
-    /* height: 506px; */
+    height: 499px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 100%;
+    border-left: 1px solid rgba(128, 128, 128, 0.32);
+    border-bottom: 1px solid rgba(128, 128, 128, 0.32);
+    border-right: 1px solid rgba(128, 128, 128, 0.32);
+}
+
+
+.gr-rightsidebar-pvchat{
+
+    background: white;
+    float: left;
+    height: 499px;
     overflow-x: hidden;
     overflow-y: auto;
     width: 100%;
