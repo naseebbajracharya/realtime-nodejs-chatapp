@@ -23,6 +23,11 @@ const userSchema = mongoose.Schema({
         default: ''
     },
 
+    cnumber: {
+        type: Number,
+        default: ''
+    },
+
     userImage: {
         type: String,
         default: 'icon.jpg'
@@ -32,6 +37,35 @@ const userSchema = mongoose.Schema({
         type: String,
         default: ''
     },
+
+    twitter: {
+        type: String,
+        default: ''
+    },
+
+    github: {
+        type: String,
+        default: ''
+    },
+
+    gender: {
+        type: String,
+        default: ''
+    },
+
+    country: {
+        type: String,
+        default: ''
+    },
+
+    bio: {
+        type: String,
+        default: ''
+    },
+
+    favGroup: [{
+        groupName: {type: String, default: ''},
+    }],
 
     fbTokens: Array,
 

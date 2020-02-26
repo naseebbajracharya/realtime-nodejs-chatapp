@@ -20,7 +20,7 @@ const {Global} = require('./helpers/Global');
 
 const container = require('./container');
 
-container.resolve(function(users, _, admin, home, group, searchresult, privatechat){
+container.resolve(function(users, _, admin, home, group, searchresult, privatechat, profile){
     //MongoDB Connections
     mongoose.Promise = global.Promise;
     mongoose.connect(Keys.MongoDB,
@@ -58,6 +58,7 @@ container.resolve(function(users, _, admin, home, group, searchresult, privatech
         group.SetRouting(router);
         searchresult.SetRouting(router);
         privatechat.SetRouting(router);
+        profile.SetRouting(router);
         
         app.use(router);
     }

@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <title>Realtime ChatApp</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="../../dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/css/home.css">
+    <link rel="stylesheet" href="/css/myprofile.css">
+
+  </head>
+
+  <body>
+        <%- include ('../partials/navbar') %>
+    <div class="container">  
+         <div class="col-md-12">
+                <input type="hidden" value="<%= user.username %>" id="name-user">
+                <input type="hidden" value="<%= user.userImage %>" id="name-user">
+            <div class="view-account" style="margin-top:65px"
+                <section class="module">
+                    <div class="module-inner">
+                        <div class="side-bar">
+                            <div class="user-info">
+                                <img class="img-profile img-circle img-thumbnail img-responsive center-block" id="show_img" src="https://realtime-chatapp.s3.us-east-2.amazonaws.com/<%= user.userImage %>" alt="">
+                                <ul class="meta list list-unstyled">
+                                    <li class="name"><%= user.fullname %> <br>
+                                        <label class="label label-info">@<%= user.username %></label>
+                                    </li>
+                                    <li class="email"><%= user.email %></li>
+                                    <li class="activity">Last logged in: Today at 2:18pm</li>
+                                </ul>
+                            </div>
+                            <nav class="side-menu">
+                                <ul class="nav">
+                                    <li><a href="/set/my-profile/<%= user.username %>"><span class="fa fa-user"></span> Profile</a></li>
+                                    <li class="active"><a href="/set/profile"><span class="fa fa-edit"></span> Edit My Profile</a></li>
+                                    <li><a href="#"><span class="fa fa-cog"></span> Settings</a></li>
+                                    <li><a href="#"><span class="fa fa-envelope"></span> Messages</a></li>
+                                    <li><a href="#"><span class="fa fa-clock-o"></span> Reminders</a></li>
+                                </ul>
+                            </nav>
+                        </div>
+                        <div class="content-panel">
+                            <h2 class="title">Profile<span class="pro-label label label-warning">PRO</span></h2>
+                            <span id="error" class="text-center"></span>
+                            <form class="form-horizontal" role="form" method="POST" id="form" action="#">
+                                <fieldset class="fieldset">
+                                    <h3 class="fieldset-title">Personal Info</h3>
+                                    <div class="form-group avatar">
+                                        <label> <i class="fa fa-hand-o-left"></i> Your Current Profile Picture</label>
+                                        <figure class="figure col-md-2 col-sm-3 col-xs-12">
+                                            <img class="img-rounded img-responsive" src="https://realtime-chatapp.s3.us-east-2.amazonaws.com/<%= user.userImage %>" alt="">
+                                        </figure>
+                                        <div class="form-inline col-md-10 col-sm-9 col-xs-12">
+                                            <input type="hidden" id="user-image" value="<%= user.userImage %>">
+                                            <button class="btn btn-sm btn-warning pull-left add-btn" type="button"><i class="fa fa-image"></i> Upload Profile Picture</button>
+                                            <input type="file" class="file-uploader pull-left" name="upload" id="add-input" style="display: none">
+                                                <em><span id="completed" style="color:green"></span></em>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                            <label class="col-md-2 col-sm-3 col-xs-12 control-label">Full Name</label>
+                                            <div class="col-md-10 col-sm-9 col-xs-12">
+                                                <input id="fullname" class="form-control" name="fullname" type="text" placeholder="<%= user.fullname %>" value="">
+                                            </div>
+                                        </div>
+
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">User Name</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input id="username" class="form-control" name="username" type="text" placeholder="<%= user.username %>" value="">
+                                        </div>
+                                    </div>
+                
+        
+                                    <div class="form-group">
+                                        <label class="col-md-2 col-sm-3 col-xs-12 control-label">Country</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input id="country" class="form-control" name="country" type="text" placeholder="<%= user.country%>" value="">
+                                        </div>
+                                    </div>
+
+                                    <label class="col-md-2 col-sm-3 col-xs-12 control-label">Gender</label>
+                                    <label style="margin-right:3px;"></label>
+                                    <!-- <% if(typeof user.gender !== 'undefined') { %>
+                                        <label class="radio-inline">
+                                            <input type="radio" name="gender" value="{%= user.gender %}" id="gender" />
+                                        </label>
+                                    <% } %> -->
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" value="Male" id="gender" checked/>
+                                    <i class="fa fa-male"></i> I'm Male
+                                    </label>
+                                    <label class="radio-inline">
+                                        <input type="radio" name="gender" value="Female" id="gender" />
+                                        <i class="fa fa-female"></i> I'm Female
+                                    </label>
+                                </fieldset>
+
+                                <fieldset class="fieldset">
+                                    <h3 class="fieldset-title">Contact Info</h3>
+                                    <div class="form-group">
+                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Contact Number</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input type="number" class="form-control" name="cnumber" id="cnumber" value="" placeholder="<%= user.cnumber%>">
+                                            <p class="help-block">This is the contact number </p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Twitter</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" placeholder="<%= user.twitter%>" value="" name="twitter" id="twitter">
+                                            <p class="help-block">Your twitter username</p>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="col-md-2  col-sm-3 col-xs-12 control-label">Github Acc-Name</label>
+                                        <div class="col-md-10 col-sm-9 col-xs-12">
+                                            <input type="text" class="form-control" value="" placeholder="<%= user.github%>" name="github" id="github">
+                                            <p class="help-block">eg. yourname</p>
+                                        </div>
+                                    </div>
+                                </fieldset>
+
+                                <fieldset class="fieldset">
+                                        <h3 class="fieldset-title">Other Info</h3>
+                                        
+                                        <!-- <div class="form-group">
+                                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Known Groups</label>
+                                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                                    <select name="group" id="group" class="form-control select">
+                                                            <option value="">Group name</option>
+                                                         </select>
+                                                </div>
+                                            </div> -->
+
+                                        <div class="form-group">
+                                                <label class="col-md-2 col-sm-3 col-xs-12 control-label">Bio</label>
+                                                <div class="col-md-10 col-sm-9 col-xs-12">
+                                                    <textarea id="bio" class="form-control" name="bio" type="text" placeholder="<%= user.bio %>" rows="3" value="" > </textarea>
+                                                </div>
+                                            </div>
+                                </fieldset>
+
+                            
+                                <div class="form-group">
+                                    <div class="col-md-12">
+                                        <input type="submit" id="profile" class="btn btn-success save-profile-btn" name="submit" value="Update Profile">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+             </div>
+         </div>
+         
+      <hr>
+      <footer>
+        <p style="color:black" class="text-center">&copy; 2020 Developed By Naseeb Bajracharya</p>
+      </footer>
+     
+    </div> <!-- /container -->
+
+
+    <!-- Bootstrap core JavaScript
+    ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <script>window.jQuery || document.write('<script src="../../assets/js/vendor/jquery.min.js"><\/script>')</script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="/socket.io/socket.io.js"></script>
+    <script src="/js/msglink.js"></script>
+    <script src="/js/group/sendrequest.js"></script> 
+    <script src="/js/user/profile.js"></script>
+    <script src="/js/home.js"></script>
+    <script src="/js/global.js"></script>
+    <script src="/js/myparam.js"></script> 
+</body>
+</html>
+
+
+
