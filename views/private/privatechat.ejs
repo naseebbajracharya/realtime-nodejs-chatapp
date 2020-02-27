@@ -97,13 +97,22 @@
                                           <form id="message_form" method="post">
                                             
 
-                                              <textarea class="form-control" name="message" id="msg" placeholder="Type your message"></textarea>
+                                              <!-- <textarea class="form-control" name="message" id="msg" placeholder="Type your message"></textarea>
                                               <div class="clearfix"></div>
                                               <div class="chat_bottom">
                                                   <button id="send-message" class="pull-right btn btn-success">
                                                       Send
                                                   </button>
-                                              </div>
+                                              </div> -->
+
+                                              <div class="input-group">
+                                                    <input id="msg" type="text" name="message" class="form-control input-md chat_input" placeholder="Write your message here..." />
+                                                    <span class="input-group-btn">
+                                                    <div class="clearfix"></div>
+                                                    <button class="btn btn-success btn-md" id="send-message"><i class="fa fa-send fa-1x" aria-hidden="true"></i> Send</button>
+                                                    </span>
+                                                </div>
+
                                           </form>
                                         </div>
                                     </div>
