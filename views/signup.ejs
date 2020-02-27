@@ -8,6 +8,7 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../../favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
     <link rel="stylesheet" href="css/login.css">
@@ -72,10 +73,17 @@
                 <label for="a">Enter Your Fullname</label>
                 <input type="text" class="form-control" placeholder="Fullname" name="fullname" required autofocus>
                   <br>
+                  <label for="a">Enter Username</label>
+                  <div class="form-group input-group">
+                      
+                      <span class="input-group-addon">
+                          <i class="fa fa-at"></i>
+                      </span>
+                    <input type="text" class="form-control" placeholder="Username" name="username" required autofocus>
+                    <br>
+                    </div>
 
-              <label for="a">Enter Your Username</label>
-              <input type="text" class="form-control" placeholder="Username" name="username" required autofocus>
-                <br>
+              
 
               <label for="a">Enter Your Email ID</label>
               <input type="text" class="form-control" placeholder="Email" name="email" required autofocus>
@@ -85,7 +93,7 @@
               <input type="password" class="form-control" placeholder="Password" name="password" required>
               <button class="btn btn-primary btn-block btn-signin" type="submit">Create Account</button>
               
-              <a href="/" class="pull-left need-help" style="text-decoration: none;">Have an account? Login Now </a><span class="clearfix"></span>
+              <a href="/" class="pull-left need-help" style="text-decoration: none; color:lightslategray;">Have an account? Login Now </a><span class="clearfix"></span>
               
               </form>
           </div>
