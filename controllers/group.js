@@ -3,6 +3,7 @@ module.exports = function(Users, async, Message, FriendResult, GroupMg){
         SetRouting: function(router){
             //GET Route
             router.get('/group/:name', this.groupPage);
+            router.get('/view-profile/:name', this.getVisitorProfile);
 
             //POST Route
             router.post('/group/:name', this.groupPostPage);
@@ -39,7 +40,15 @@ module.exports = function(Users, async, Message, FriendResult, GroupMg){
                         }], 
                         function(err, newResult){
                             // console.log(newResult)
-                            callback(err, newResult);
+                            // callback(err, newResult);
+                            const arr = [
+                                {path: 'body.sender', model: 'User'},
+                                {path: 'body.receiver', model: 'User'}
+                            ];
+
+                            Message.populate(newResult, arr, (err, newResult1) => {
+                                callback(err, newResult1);
+                            })
                         }
             )
                 },
@@ -99,6 +108,69 @@ module.exports = function(Users, async, Message, FriendResult, GroupMg){
             req.session.destroy((err)=> {
                 res.redirect('/');
             });
+        },
+
+        getVisitorProfile: (req,res) => {
+
+            const name = req.params.name;
+            async.parallel([
+                function(callback){
+                    Users.findOne({'username': req.params.name})
+                    .populate('request.userId')
+                    .exec((err, result) => {
+                        callback(err, result);
+                    })
+                },
+
+                function(callback){
+                    const nameRegex = new RegExp("^" + req.user.username.toLowerCase(), "i")
+                    Message.aggregate(
+                        [{ $match: {$or:[{"senderName":nameRegex}, {"receiverName":nameRegex}]}},
+                        { $sort: {"createdAt":-1}},
+                        { $group: {"_id":{
+                                "last_message_between":{ $cond:[
+                                        {$gt:[
+                                         {$substr:["$senderName",0,1]},
+                                         {$substr:["$receiverName",0,1]}]
+                                        },
+                                        {$concat:["$senderName"," and ","$receiverName"]},
+                                        {$concat:["$receiverName"," and ","$senderName"]}
+                                    ]
+                                }
+                                }, "body": {$first:"$$ROOT"}
+                            }
+                        }], 
+                        function(err, newResult){
+                            // console.log(newResult)
+                            callback(err, newResult);
+                        }
+            )
+                },
+
+                function(callback){
+                    GroupMg.find({})
+                        .populate('sender')
+                        .exec((err, result) => {
+                            callback(err, result);
+                        });
+                }
+            
+            ], (err,results) => {
+                const result1 = results[0];
+                const result2 = results[1];
+                const result3 = results[2];
+                res.render('user/visitors-profile', {
+                    user:req.user,
+                    groupName:name,
+                    data: result1,
+                    chat: result2,
+                    groupMsg: result3
+                });
+            });
+
+            // res.render('user/visitors-profile', {
+            //     user: req.user
+            // });
         }
     }
 }

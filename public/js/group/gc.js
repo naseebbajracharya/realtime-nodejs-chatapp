@@ -2,6 +2,7 @@ $(document).ready(function(){
     var socket = io();
     var room = $('#groupName').val();
     var sender = $('#sender').val();
+    var userPic = $('#name-image').val();
     socket.on('connect', function(){
         console.log('Yeah the user is connected!');
         var params = {
@@ -38,7 +39,8 @@ $(document).ready(function(){
         //using mustache render method 
         var message = Mustache.render(template, {
             text: data.text,
-            sender: data.from
+            sender: data.from,
+            userImage: data.image
         });
 
         $('#messages').append(message);
@@ -47,10 +49,12 @@ $(document).ready(function(){
     $('#message-form').on('submit', function(e){
         e.preventDefault();
         var msg = $('#msg').val();
+
         socket.emit('createMessage', {
             text: msg,
             room: room,
-            from: sender
+            from: sender,
+            userPic: userPic
         }, function(){
             $('#msg').val('');
         })

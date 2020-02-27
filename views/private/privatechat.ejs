@@ -22,7 +22,7 @@
             <div class="col-md-12">
 
                 <input type="hidden" id="name-user" value="<%= user.username %>">
-                <input type="hidden" id="name-user" value="<%= user.userImage %>">
+                <input type="hidden" id="name-image" value="<%= user.userImage %>">
 
                     <div class="col-md-12">
                         <div class="chat_container" >
@@ -47,7 +47,7 @@
                                                     <% if(name === val.receiver.username) { %>
                                                 <li class="left">
                                                     <span class="chat-img1 pull-left">
-                                                        <img src="http://placehold.it/300x300" class="img-thumbnail" alt="">
+                                                        <img src="https://realtime-chatapp.s3.us-east-2.amazonaws.com/<%= val.sender.userImage %>" class="img-thumbnail" alt="">
                                                     </span>
                                                     <div class="chat-body1">
                                                         <span class="chat-name">
@@ -60,7 +60,7 @@
                                                 <% } else if(name === val.sender.username) { %>
                                                     <li class="left">
                                                             <span class="chat-img1 pull-left">
-                                                                <img src="http://placehold.it/300x300" class="img-thumbnail" alt="">
+                                                                <img src="https://realtime-chatapp.s3.us-east-2.amazonaws.com/<%= val.sender.userImage %>" class="img-thumbnail" alt="">
                                                             </span>
                                                             <div class="chat-body1">
                                                                 <span class="chat-name">
@@ -80,7 +80,7 @@
                                             <script id="message-template" type="text/template">
                                                 <li class="left">
                                                     <span class="chat-img1 pull-left">
-                                                        <img src="http://placehold.it/300x300" class="img-thumbnail" alt="">
+                                                        <img src="https://realtime-chatapp.s3.us-east-2.amazonaws.com/{{userImage}}" class="img-thumbnail" alt="">
                                                     </span>
                                                     <div class="chat-body1">
                                                         <span class="chat-name">

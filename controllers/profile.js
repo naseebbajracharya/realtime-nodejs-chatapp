@@ -6,6 +6,7 @@ module.exports = function(async, Users, Message, aws, formidable, FriendResult){
 
             router.post('/userupload', aws.Upload.any(), this.postUserPhoto);
             router.post('/set/profile', this.postMyProfile);
+            router.post('/set/my-profile/:name', this.viewProfilePage);
         },
 
         getMyProfile: (req,res) => {
@@ -161,7 +162,14 @@ module.exports = function(async, Users, Message, aws, formidable, FriendResult){
                         }], 
                         function(err, newResult){
                             // console.log(newResult)
-                            callback(err, newResult);
+                            const arr = [
+                                {path: 'body.sender', model: 'User'},
+                                {path: 'body.receiver', model: 'User'}
+                            ];
+
+                            Message.populate(newResult, arr, (err, newResult1) => {
+                                callback(err, newResult1);
+                            })
                         }
                     )
                 }
@@ -175,6 +183,10 @@ module.exports = function(async, Users, Message, aws, formidable, FriendResult){
                     chat: result2,
                 });
             });
+        },
+
+        viewProfilePage: (req,res) => {
+            FriendResult.PostRequest(req, res, 'set/profile/'+req.params.name);
         }
     }
 }

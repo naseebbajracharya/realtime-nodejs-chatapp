@@ -249,7 +249,7 @@ member_list li:hover {
 
 
 .main-scroll {
-    height: 300px;
+    height: 243px;
     overflow-x: hidden;
     overflow-y: auto;
 }
@@ -272,7 +272,7 @@ member_list li:hover {
     padding-top: 15px;
     background: white;
     float: left;
-    height: 499px;
+    height: 249px;
     overflow-x: hidden;
     overflow-y: auto;
     width: 100%;

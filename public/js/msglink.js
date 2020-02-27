@@ -16,12 +16,12 @@ $(document).ready(function(){
         }
         socket.emit('join private msg', params);
         
+        socket.on('new refresh', function(){
+            $('#reload').load(location.href + ' #reload');
+        });
     });
 
-    socket.on('new refresh', function(){
-        $('#reload').load(location.href + ' #reload');
-    });
-
+    
     $(document).on('click', '#messageLink', function(){
         var chatId = $(this).data().value;
 

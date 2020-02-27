@@ -23,82 +23,13 @@
             <div class="col-md-12">
 
                 <input type="hidden" id="name-user" value="<%= user.username %>">
-                <input type="hidden" id="name-user" value="<%= user.userImage %>">
+                <input type="hidden" id="name-image" value="<%= user.userImage %>">
 
                     <div class="col-md-12">
                         <div class="chat_container" >
                             <div class="row">
                                 
-                                <div class="col-sm-4 col-md-3 mob-clearfix" >
-                                    <div class="row">
-                                        <div class="col-md-12">
-                                            <div class="card-container" style="margin-top:65px;">
-                                                <div class="card">
-                                                    <div class="front">
-                                                        <div class="cover">
-            
-                                                        </div>
-                                                        <div class="user img-thumbnail">
-                                                            <img src="https://placehold.it/300x300" class="img-circle" alt="">
-                                                        </div>
-                                                        <div class="content">
-                                                            <div class="main">
-                                                                <h3 class="name"><%= _.upperFirst(user.username) %></h3>
-                                                                <p class="profession-online">
-                                                                    <i class="fa fa-circle online" aria-hidden="true"></i>
-                                                                    Online
-                                                                </p>
-                                                                <p class="text-center">
-                                                                    Mantra
-                                                                </p>
-                                                            </div>
-                                                            <div class="footer">
-                                                                <i class="fa fa-mail-forward"></i> 
-                                                                <a href="#">
-                                                                  View My Profile
-                                                                </a>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-            
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-            
-                                    <div class="row" style="margin-top:1px;">
-                                        <div class="col-md-12">
-                                            <div class="card-container">
-                                                <div class="card">
-                                                    <div class="front">
-            
-                                                        <div class="content main-scroll">
-                                                            <div class="main" id="main_scroll">
-                                                                <p class="friends text-center" style="margin-bottom:0px;">
-                                                                    Online Friends <span id="numOfFriends"></span>
-                                                                </p>
-                                                                <hr style="margin-top:10px" />
-                                                                <% if(data.friendsList.length > 0) { %>
-                                                                    <% _.forEach(data.friendsList, function(value) { %>
-                                                                        <div class="friend" hidden>@<%= value.friendName %></div>
-                                                                    <% }) %>
-                                                                <% } %>
-                                                                <div class="onlineFriends"></div>
-            
-                                                            </div>
-            
-                                                        </div>
-                                                    </div>
-            
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-            
-            
-                                
-                                <div class="col-sm-5 col-md-6 message_section">
+                                <div class="col-md-9 message_section">
                                     <div class="row" style="margin-top:65px;">
                                         <div class="new_message_head">
                                             <div class="text-center">
@@ -116,7 +47,7 @@
                                                     <% if(groupName === val.name) { %>
                                                 <li class="left">
                                                     <span class="chat-img1 pull-left">
-                                                        <img src="http://placehold.it/300x300" class="img-thumbnail" alt="">
+                                                        <img src="https://realtime-chatapp.s3.us-east-2.amazonaws.com/<%= val.sender.userImage %>" class="img-thumbnail" alt="">
                                                     </span>
                                                     <div class="chat-body1">
                                                         <span class="chat-name">
@@ -135,7 +66,7 @@
                                             <script id="message-template" type="text/template">
                                                 <li class="left">
                                                     <span class="chat-img1 pull-left">
-                                                        <img src="http://placehold.it/300x300" class="img-thumbnail" alt="">
+                                                        <img src="https://realtime-chatapp.s3.us-east-2.amazonaws.com/{{userImage}}" class="img-thumbnail" alt="">
                                                     </span>
                                                     <div class="chat-body1">
                                                         <span class="chat-name">
@@ -165,7 +96,7 @@
                                     </div>
                                 </div>
             
-                                <div class="col-sm-3 col-md-3 mob-50 mob-clearfix" style="margin-top:65px;">
+                                <div class="col-md-3 mob-clearfix" style="margin-top:65px;">
             
             
                                     <div class="new_message_head">
@@ -214,9 +145,44 @@
                                             <div id="users"></div>
                                             
                                         </div>
-            
+                                        
                                     </div>
+                                    <div class="row" style="margin-top:10px;">
+                                        <div class="col-md-12">
+                                            <div class="card-container">
+                                                <div class="card">
+                                                    <div class="front">
+            
+                                                        <div class="content main-scroll">
+                                                            <div class="main" id="main_scroll">
+                                                                <p class="friends text-center" style="margin-bottom:0px;">
+                                                                    Online Friends <span id="numOfFriends"></span>
+                                                                </p>
+                                                                <hr style="margin-top:10px" />
+                                                                <% if(data.friendsList.length > 0) { %>
+                                                                    <% _.forEach(data.friendsList, function(value) { %>
+                                                                        <div class="friend" hidden>@<%= value.friendName %></div>
+                                                                    <% }) %>
+                                                                <% } %>
+                                                                <div class="onlineFriends"></div>
+            
+                                                            </div>
+            
+                                                        </div>
+                                                    </div>
+            
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
                                 </div>
+
+                              
+                                   
+            
+                                    
+                                
             
                             </div>
             

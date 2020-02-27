@@ -2,7 +2,8 @@ module.exports = function(formidable, Group, aws){
     return {
         SetRouting: function(router){
             //GET Route
-            router.get('/dashboard', this.adminPage);
+            router.get('/admin/dashboard', this.adminPage);
+            router.get('/admin/dashboard/2', this.adminPage2);
 
             //POST Route
             router.post('/uploadFile', aws.Upload.any(), this.uploadFile);
@@ -12,6 +13,10 @@ module.exports = function(formidable, Group, aws){
 
         adminPage: function(req,res){
             res.render('admin/dashboard');
+        },
+
+        adminPage2: (req,res) => {
+            res.render('admin/dashboard-2');
         },
 
         adminPostPage: function(req,res){
