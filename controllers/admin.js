@@ -12,11 +12,15 @@ module.exports = function(formidable, Group, aws){
         },
 
         adminPage: function(req,res){
-            res.render('admin/dashboard');
+            res.render('admin/dashboard', {
+                user: req.user
+            });
         },
 
         adminPage2: (req,res) => {
-            res.render('admin/dashboard-2');
+            res.render('admin/dashboard-2', {
+                user: req.user
+            });
         },
 
         adminPostPage: function(req,res){

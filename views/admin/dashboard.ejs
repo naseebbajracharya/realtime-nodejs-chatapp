@@ -20,7 +20,7 @@
         </form>
     </div> -->
 
-    <div id="top-nav" class="navbar navbar-inverse navbar-static-top">
+    <div id="top-nav" class="navbar navbar-default navbar-static-top">
         <div class="container-fluid">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -28,15 +28,15 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                <a class="navbar-brand" href="#">Dashboard</a>
+                <a class="navbar-brand" href="/admin/dashboard">Chat Application</a>
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown">
-                        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-user-circle"></i> Admin</a>
+                        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-user-secret"></i> Admin: <%= user.username %></a>
                         
                     </li>
-                    <li><a href="/logout"><i class="fa fa-sign-out"></i> Logout</a></li>
+                    <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
                 </ul>
             </div>
         </div>
@@ -48,19 +48,20 @@
         <ul class="nav nav-pills nav-stacked" style="border-right:1px solid black">
             <!--<li class="nav-header"></li>-->
             <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
-            <li><a href="/admin/dashboard/2"><i class="fa fa-tags"></i> Manage Groups</a></li>
+            <li><a href="/admin/dashboard/2"><i class="fa fa-comments"></i> Manage Groups</a></li>
     
         </ul>
     </div><!-- /span-3 -->
     <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
         <!-- Right -->
     
-        <a href="#"><strong><span class="fa fa-dashboard"></span> My Dashboard</strong></a>
+        <a href="/admin/dashboard" style="text-decoration: none;"><strong><span class="fa fa-dashboard"></span> My Dashboard</strong></a>
         <hr>
 
         <h1 class="text-center">Welcome To Admin Panel </h1>
+        <h3 class="text-center">Dear User <%= user.fullname %>,</h3>
         <h4 class="text-center">Please click on manage side in order to add groups and informations to the application.</h4>
-        <h4 class="text-center">Here, the user can easily add group name with their respective photos and taglines. And finally upload them online!</h4>
+        <h4 class="text-center">Here, you can easily add groups, name with their respective photos and taglines. And finally upload them online!</h4>
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
