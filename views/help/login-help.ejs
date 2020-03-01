@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -8,10 +7,9 @@
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
     <meta name="author" content="">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <link rel="icon" href="../../favicon.ico">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="../css/login.css">
     <title>Realtime ChatApp</title>
 
     <!-- Bootstrap core CSS -->
@@ -19,6 +17,9 @@
 
     <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
     <link href="../../assets/css/ie10-viewport-bug-workaround.css" rel="stylesheet">
+
+    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
+    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
     <script src="../../assets/js/ie-emulation-modes-warning.js"></script>
 
   </head>
@@ -28,12 +29,7 @@
     <nav class="navbar navbar-default navbar-fixed-top">
       <div class="container">
         <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
+         
           <a class="navbar-brand" href="/">
             <img alt="logo" src="/img/chat-icon.png" width="22px">
           </a>
@@ -58,43 +54,18 @@
       <!-- Example row of columns -->
       <div class="row">
         <div class="col-sm-6 col-md-4 col-md-offset-4" style="margin-top:50px">
-          <h1 class="text-center login-title">Create a new account now!</h1>
-          <% if(hasErrors) { %>
-            <% _.forEach(messages, function(error){ %>
-              <div class="alert alert-danger text-center" >
-              <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-              <%= error %>
-          </div>
-            <% }) %>
-        <% } %>
+          <h1 class="text-center login-title"><em>Incase you're having problem logging into the system, please leave your email id so that we can have a look!</em> </h1>
+          
           <div class="account-wall">
-              
-              <form action="/signup" class="form-signin" method="POST">
-                <label for="a">Enter Your Fullname</label>
-                <input type="text" class="form-control" placeholder="Fullname" name="fullname" required autofocus>
-                  <br>
-                  <label for="a">Enter Username</label>
-                  <div class="form-group input-group">
-                      
-                      <span class="input-group-addon">
-                          <i class="fa fa-at"></i>
-                      </span>
-                    <input type="text" class="form-control" placeholder="Username" name="username" required autofocus>
-                    <br>
-                    </div>
-
-              
-
-              <label for="a">Enter Your Email ID</label>
+              <img class="profile-img" src="/img/helpico.png"
+                  alt="">
+              <form action="/login-help" class="form-signin" method="POST">
+                <p style="color:#3a4755">Please Enter Your Email ID</p>
               <input type="text" class="form-control" placeholder="Email" name="email" required autofocus>
-                <br>
-
-              <label for="">Enter Your Password</label>
-              <input type="password" class="form-control" placeholder="Password" name="password" required>
-              <button class="btn btn-primary btn-block btn-signin" type="submit">Create Account</button>
-              
-              <a href="/" class="pull-left need-help" style="text-decoration: none; color:lightslategray;">Have an account? Login Now </a><span class="clearfix"></span>
-              
+              <br>
+              <button class="btn btn-success btn-block btn-signin" type="submit">Request</button>
+             
+              <a href="/signup" class="text-center new-account" style="text-decoration: none; color:lightslategray;">No Account? Create It Now! </a>
               </form>
           </div>
           <!-- <a href="#" class="text-center new-account">Create an account </a> -->

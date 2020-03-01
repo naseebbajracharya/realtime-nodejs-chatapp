@@ -74,7 +74,7 @@ h3 {
 .chat_area {
     background: white;
     float: left;
-    height: 360px;
+    height: 440px;  /* default 370 px*/
     overflow-x: hidden;
     overflow-y: auto;
     width: 100%;
