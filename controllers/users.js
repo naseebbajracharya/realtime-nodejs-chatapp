@@ -7,6 +7,7 @@ module.exports = function(_, passport, UserValidation){
             router.get('/', this.indexPage);
             router.get('/signup',this.getSignUp);
             router.get('/login/help', this.getLoginHelp);
+            router.get('/signup/help', this.getSignupHelp);
 
             //Post Route
             router.post('/signup', UserValidation.SignUpValidation, this.postSignUp);
@@ -23,6 +24,10 @@ module.exports = function(_, passport, UserValidation){
 
         getLoginHelp: (req,res) => {
             res.render('help/login-help');
+        },
+
+        getSignupHelp: (req,res) => {
+            res.render('help/signup-help');
         },
 
         postLogin: passport.authenticate('local.login', {
