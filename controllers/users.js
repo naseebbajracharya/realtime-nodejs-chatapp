@@ -1,4 +1,5 @@
 'use strict';
+const LoginHelp = require('../models/login-help');
 
 module.exports = function(_, passport, UserValidation){
     return {
@@ -12,6 +13,7 @@ module.exports = function(_, passport, UserValidation){
             //Post Route
             router.post('/signup', UserValidation.SignUpValidation, this.postSignUp);
             router.post('/', UserValidation.LoginValidation, this.postLogin);
+            router.post('/login-help', this.postLoginHelp);
         },
 
         indexPage: function(req,res){
@@ -24,6 +26,20 @@ module.exports = function(_, passport, UserValidation){
 
         getLoginHelp: (req,res) => {
             res.render('help/login-help');
+        },
+
+        postLoginHelp: (req,res)=> {
+            const newLoginHelp = {
+                email: req.body.email,
+                requestedAt: new Date()
+            }
+            new LoginHelp(newLoginHelp).save((err) => {
+                if(err){
+                    throw err;
+                } else {
+                    res.redirect('/');
+                }
+            })
         },
 
         getSignupHelp: (req,res) => {
