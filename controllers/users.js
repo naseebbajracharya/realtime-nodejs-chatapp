@@ -1,5 +1,6 @@
 'use strict';
 const LoginHelp = require('../models/login-help');
+const SignUpHelp = require('../models/signup-help');
 
 module.exports = function(_, passport, UserValidation){
     return {
@@ -14,6 +15,7 @@ module.exports = function(_, passport, UserValidation){
             router.post('/signup', UserValidation.SignUpValidation, this.postSignUp);
             router.post('/', UserValidation.LoginValidation, this.postLogin);
             router.post('/login-help', this.postLoginHelp);
+            router.post('/signup-help', this.postSignUpHelp);
         },
 
         indexPage: function(req,res){
@@ -44,6 +46,20 @@ module.exports = function(_, passport, UserValidation){
 
         getSignupHelp: (req,res) => {
             res.render('help/signup-help');
+        },
+
+        postSignUpHelp: (req,res) => {
+            const newSignUpHelp = {
+                email: req.body.email,
+                requestedAt: new Date()
+            }
+            new SignUpHelp(newSignUpHelp).save((err) => {
+                if(err){
+                    throw err;
+                } else {
+                    res.redirect('/');
+                }
+            })
         },
 
         postLogin: passport.authenticate('local.login', {
