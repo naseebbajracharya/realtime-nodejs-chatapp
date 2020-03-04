@@ -59,6 +59,11 @@
                                     <a href="#myModal" class="trigger-btn" data-toggle="modal" style="text-decoration: none;">Deactivate My Account Now!</a>
                             </div>
                             
+                            <div class="col-md-12" contenteditable="false">
+                                <h3>Account Settings</h3>
+                                <a href="#myModal2" class="trigger-btn" data-toggle="modal" style="text-decoration: none;">Change Password</a>
+                            </div>
+                            
                             </div>
                            
                         </div>
@@ -86,6 +91,50 @@
                                 <a href="/set/settings"><button type="button" class="btn btn-info" data-dismiss="modal">Cancel</button></a> 
                                <button type="submit" class="btn btn-danger" onclick="deactivate()">Delete</button>
                             </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="myModal2" class="modal fade">
+                    <div class="modal-dialog modal-confirm">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <div class="icon-box">
+                                    <i class="fa fa-key"></i>
+                                </div>				
+                                <h4 class="modal-title">Change Password</h4>	
+                                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="col-md-12">
+                                    <p class="text-center">Your password cannot be the same as your username.</p>
+                                    <form method="POST" action="/change-password" id="passwordForm">
+                                    <input type="password" class="input form-control" name="password" id="password" placeholder="Current Password" autocomplete="off">
+                                    <br>
+                                    <input type="password" class="input form-control" name="password1" id="password1" placeholder="New Password" autocomplete="off">
+                                    <div class="row">
+                                    <div class="col-md-6">
+                                    <span id="8char" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> 8 Char Long<br>
+                                    <span id="ucase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Uppercase
+                                    </div>
+                                    <div class="col-md-6">
+                                    <span id="lcase" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Lowercase<br>
+                                    <span id="num" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> One Number
+                                    </div>
+                                    </div>
+                                    <input type="password" class="input form-control" name="password2" id="password2" placeholder="Repeat Password" autocomplete="off">
+                                    <div class="row">
+                                    <div class="col-md-12">
+                                    <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Passwords Match
+                                    </div>
+                                    </div>
+                                    <input type="submit" class="col-xs-12 btn btn-warning btn-load" data-loading-text="Changing Password..." value="Submit Details">
+                                    </form>
+                                    </div><!--/col-sm-6-->
+                            </div>
+                            <div class="modal-footer">
+                            
                             </div>
                         </div>
                     </div>
@@ -125,8 +174,64 @@
 
 <script>
     function deactivate(){
-        alert('Thank you for using this application. You will be redirected to login page shortly!')
+        alert('You will be redirected to login page shortly!')
     }
+
+    $("input[type=password]").keyup(function(){
+    var ucase = new RegExp("[A-Z]+");
+	var lcase = new RegExp("[a-z]+");
+	var num = new RegExp("[0-9]+");
+	
+	if($("#password1").val().length >= 8){
+		$("#8char").removeClass("glyphicon-remove");
+		$("#8char").addClass("glyphicon-ok");
+		$("#8char").css("color","#00A41E");
+	}else{
+		$("#8char").removeClass("glyphicon-ok");
+		$("#8char").addClass("glyphicon-remove");
+		$("#8char").css("color","#FF0004");
+	}
+	
+	if(ucase.test($("#password1").val())){
+		$("#ucase").removeClass("glyphicon-remove");
+		$("#ucase").addClass("glyphicon-ok");
+		$("#ucase").css("color","#00A41E");
+	}else{
+		$("#ucase").removeClass("glyphicon-ok");
+		$("#ucase").addClass("glyphicon-remove");
+		$("#ucase").css("color","#FF0004");
+	}
+	
+	if(lcase.test($("#password1").val())){
+		$("#lcase").removeClass("glyphicon-remove");
+		$("#lcase").addClass("glyphicon-ok");
+		$("#lcase").css("color","#00A41E");
+	}else{
+		$("#lcase").removeClass("glyphicon-ok");
+		$("#lcase").addClass("glyphicon-remove");
+		$("#lcase").css("color","#FF0004");
+	}
+	
+	if(num.test($("#password1").val())){
+		$("#num").removeClass("glyphicon-remove");
+		$("#num").addClass("glyphicon-ok");
+		$("#num").css("color","#00A41E");
+	}else{
+		$("#num").removeClass("glyphicon-ok");
+		$("#num").addClass("glyphicon-remove");
+		$("#num").css("color","#FF0004");
+	}
+	
+	if($("#password1").val() == $("#password2").val()){
+		$("#pwmatch").removeClass("glyphicon-remove");
+		$("#pwmatch").addClass("glyphicon-ok");
+		$("#pwmatch").css("color","#00A41E");
+	}else{
+		$("#pwmatch").removeClass("glyphicon-ok");
+		$("#pwmatch").addClass("glyphicon-remove");
+		$("#pwmatch").css("color","#FF0004");
+	}
+});
 </script>
 
 
