@@ -10,6 +10,8 @@ module.exports = function(_, passport, UserValidation){
             router.get('/signup',this.getSignUp);
             router.get('/login/help', this.getLoginHelp);
             router.get('/signup/help', this.getSignupHelp);
+            router.get('/auth/google', this.googleLogin);
+            router.get('/auth/google/callback', this.cbGoogleLogin);
 
             //Post Route
             router.post('/signup', UserValidation.SignUpValidation, this.postSignUp);
@@ -77,6 +79,17 @@ module.exports = function(_, passport, UserValidation){
         },
 
         postSignUp: passport.authenticate('local.signup', {
+            successRedirect: '/home',
+            failureRedirect: '/signup',
+            failureFlash: true
+        }),
+
+        googleLogin: passport.authenticate('google', {
+            scope: ['https://www.googleapis.com/auth/plus.login', 
+                    'https://www.googleapis.com/auth/plus.profile.emails.read']
+        }),
+
+        cbGoogleLogin: passport.authenticate('google', {
             successRedirect: '/home',
             failureRedirect: '/signup',
             failureFlash: true
