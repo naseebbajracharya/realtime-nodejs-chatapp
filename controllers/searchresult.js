@@ -48,7 +48,7 @@ module.exports = function(async, Group, Users){
                 const res1 = results[0];
                 
                 const dataChunk  = [];
-                const chunkSize = 3;
+                const chunkSize = 4;
                 for (let i = 0; i < res1.length; i += chunkSize){
                     dataChunk.push(res1.slice(i, i+chunkSize));
                 }

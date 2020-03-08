@@ -85,8 +85,8 @@ module.exports = function(_, passport, UserValidation){
         }),
 
         googleLogin: passport.authenticate('google', {
-            scope: ['https://www.googleapis.com/auth/plus.login', 
-                    'https://www.googleapis.com/auth/plus.profile.emails.read']
+            scope: ['https://www.googleapis.com/auth/userinfo.profile',
+            'https://www.googleapis.com/auth/userinfo.email']
         }),
 
         cbGoogleLogin: passport.authenticate('google', {
