@@ -10,7 +10,6 @@ body {
 
 
 
-
 .reg-div a{
     color: #4aa1f3 !important;
     font-size:18px;
@@ -256,4 +255,71 @@ footer .container .text-muted {
     display: block;
     margin-top: 10px;
 }
+
+
+
+/* Google Social Button CSS */
+
+#customBtn {
+    display: inline-block;
+    background: white;
+    color: #444;
+    width: 140px;
+    border-radius: 5px;
+    border: thin solid #888;
+    box-shadow: 1px 1px 1px grey;
+    white-space: nowrap;
+  }
+  #customBtn:hover {
+    cursor: pointer;
+  }
+  span.label {
+    font-family: serif;
+    font-weight: normal;
+  }
+  span.icon {
+    background: url('/img/google-icon.png') transparent 5px 50% no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+  }
+  span.buttonText {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 10px;
+    padding-right: 42px;
+    font-size: 14px;
+    font-weight: bold;
+    /* Use the Roboto font that is loaded in the <head> */
+    font-family: 'Roboto', sans-serif;
+  }
+
+  span.buttonText2 {
+    display: inline-block;
+    vertical-align: middle;
+    padding-left: 5px;
+    padding-right: 42px;
+    font-size: 14px;
+    font-weight: bold;
+    /* Use the Roboto font that is loaded in the <head> */
+    font-family: 'Roboto', sans-serif;
+  }
+
+  span.icon2 {
+    background: url('/img/insta-icon.png') transparent 5px 50% no-repeat;
+    display: inline-block;
+    vertical-align: middle;
+    width: 42px;
+    height: 42px;
+  }
+
+
+  /* Get all members - hover effect */
+  .box:hover
+  {
+    -moz-box-shadow: 0 0 10px rgb(138, 138, 138);
+    -webkit-box-shadow: 0 0 10px rgb(138, 138, 138);
+    box-shadow: 0 0 10px rgb(138, 138, 138);
+  }
 
