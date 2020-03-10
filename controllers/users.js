@@ -12,6 +12,8 @@ module.exports = function(_, passport, UserValidation){
             router.get('/signup/help', this.getSignupHelp);
             router.get('/auth/google', this.googleLogin);
             router.get('/auth/google/callback', this.cbGoogleLogin);
+            router.get('/auth/facebook', this.getFBLogin);
+            router.get('/auth/facebook/callback', this.cbFBLogin);
 
             //Post Route
             router.post('/signup', UserValidation.SignUpValidation, this.postSignUp);
@@ -93,7 +95,19 @@ module.exports = function(_, passport, UserValidation){
             successRedirect: '/home',
             failureRedirect: '/signup',
             failureFlash: true
+        }),
+
+        getFBLogin: passport.authenticate('facebook', {
+            scope:['email']
+        }),
+
+        cbFBLogin: passport.authenticate('facebook', {
+            successRedirect: '/home',
+            failureRedirect: '/signup',
+            failureFlash: true
         })
+
+        
         
     }
 }
