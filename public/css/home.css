@@ -125,6 +125,14 @@ body {
     padding: 0px 15px 0px 15px;
 }
 
+/* Get all members - hover effect */
+.boxshadow:hover
+{
+  -moz-box-shadow: 0 0 20px rgb(138, 138, 138);
+  -webkit-box-shadow: 0 0 20px rgb(138, 138, 138);
+  box-shadow: 0 0 13px rgb(138, 138, 138);
+}
+
 
 
 
