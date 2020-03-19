@@ -65,6 +65,8 @@ container.resolve(function(users, _, admin, home, group, searchresult, privatech
 
     function ConfigureExpress(app){
         require('./passport/passport-local');
+        require('./passport/passport-google');
+        require('./passport/passport-fb');
         
         app.use(express.static('public'));
         app.use(cookieParser());
