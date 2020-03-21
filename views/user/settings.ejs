@@ -109,7 +109,7 @@
                             <div class="modal-body">
                                 <div class="col-md-12">
                                     <p class="text-center">Your password cannot be the same as your username.</p>
-                                    <form method="POST" action="/change-password" id="passwordForm">
+                                    <form method="POST" action="/user/<%= user.username %>/change-password" id="passwordForm">
                                     <input type="password" class="input form-control" name="password" id="password" placeholder="Current Password" autocomplete="off">
                                     <br>
                                     <input type="password" class="input form-control" name="password1" id="password1" placeholder="New Password" autocomplete="off">
