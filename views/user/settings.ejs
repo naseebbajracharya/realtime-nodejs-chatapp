@@ -108,9 +108,9 @@
                             </div>
                             <div class="modal-body">
                                 <div class="col-md-12">
-                                    <p class="text-center">Your password cannot be the same as your username.</p>
+                                    <label for="asd">SECURTY QUESTION-Injected from user's database</label>
                                     <form method="POST" action="/user/<%= user.username %>/change-password" id="passwordForm">
-                                    <input type="password" class="input form-control" name="password" id="password" placeholder="Current Password" autocomplete="off">
+                                    <input type="text" class="input form-control" name="sec-ques-ans" id="sec-ques-ans" placeholder="Your Security Answer" autocomplete="off">
                                     <br>
                                     <input type="password" class="input form-control" name="password1" id="password1" placeholder="New Password" autocomplete="off">
                                     <div class="row">
@@ -129,7 +129,8 @@
                                     <span id="pwmatch" class="glyphicon glyphicon-remove" style="color:#FF0004;"></span> Passwords Match
                                     </div>
                                     </div>
-                                    <input type="submit" class="col-xs-12 btn btn-warning btn-load" data-loading-text="Changing Password..." value="Submit Details">
+                                    <br>
+                                    <input type="submit" class="col-xs-12 btn btn-warning btn-load" data-loading-text="Changing Password..." value="Proceed">
                                     </form>
                                     </div><!--/col-sm-6-->
                             </div>
