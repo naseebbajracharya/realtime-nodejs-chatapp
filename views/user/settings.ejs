@@ -108,7 +108,7 @@
                             </div>
                             <div class="modal-body">
                                 <div class="col-md-12">
-                                    <label for="asd">SECURTY QUESTION-Injected from user's database</label>
+                                    <label for="asd"><%= user.secQues %></label>
                                     <form method="POST" action="/user/<%= user.username %>/change-password" id="passwordForm">
                                     <input type="text" class="input form-control" name="sec-ques-ans" id="sec-ques-ans" placeholder="Your Security Answer" autocomplete="off">
                                     <br>
