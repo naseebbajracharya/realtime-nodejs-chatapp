@@ -53,6 +53,14 @@ const userSchema = mongoose.Schema({
         default: ''
     },
 
+    secQues: {
+        type: String
+    },
+
+    secAns: {
+        type: String
+    },
+
     country: {
         type: String,
         default: ''

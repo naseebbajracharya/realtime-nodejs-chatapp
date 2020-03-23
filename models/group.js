@@ -19,7 +19,8 @@ const groupName = mongoose.Schema({
     followers: [{
         username: {type: String, default: ''},
         email: {type: String, default: ''}
-    }]
+    }],
+    
 })
 
 module.exports = mongoose.model('Group', groupName);
