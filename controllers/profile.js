@@ -1,4 +1,5 @@
-module.exports = function(async, Users, Message, aws, formidable, FriendResult){
+module.exports = function(async, Users, Message, aws, formidable, FriendResult, passport){
+    
     return {
         SetRouting: function(router){
             router.get('/set/profile', this.getMyProfile);
@@ -9,6 +10,7 @@ module.exports = function(async, Users, Message, aws, formidable, FriendResult){
             router.post('/set/profile', this.postMyProfile);
             router.post('/set/my-profile/:name', this.viewProfilePage);
             router.post('/settings/deactivate-account', this.deactivateAccount);
+            router.post('/user/:name/change-password', this.changePassword);
         },
 
         getMyProfile: (req,res) => {
@@ -250,6 +252,21 @@ module.exports = function(async, Users, Message, aws, formidable, FriendResult){
                 res.redirect('/');
             }).catch((err) => {
                 console.log(err);
+            })
+        },
+
+        changePassword: (req,res) => {
+            Users.findOne({secAns:req._user})
+            .then((user) => {
+                user.password = user.encryptPassword(req.body.password1);
+                user.save((err,user) => {
+                    if(err){
+                        throw err;
+                    }
+                    if(user){
+                        res.render('home')
+                    }
+                })
             })
         }
 
