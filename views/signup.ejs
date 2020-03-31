@@ -93,14 +93,14 @@
               <input type="password" class="form-control" placeholder="Password" name="password" required>
 
               <label for="">Select Security Question</label>
-              <select class="form-control" id="sec-ques" name="sec-ques">
+              <select class="form-control" id="secQues" name="secQues">
                 <option value="What was the name of your first pet?">What was the name of your first pet?</option>
                 <option value="What was the first movie that you saw in a theater?">What was the first movie that you saw in a theater?</option>
                 <option value="What was the last name of your favourite school teacher?">What was the last name of your favourite school teacher?</option>
                 <option value="What was the first thing you learned to cook?">What was the first thing you learned to cook?</option>
                 <option value="Who is your favourite superhero?">Who is your favourite superhero?</option>
               </select>
-              <input type="text" class="form-control" placeholder="Your Answer" name="sec-ans" required autofocus>
+              <input type="text" class="form-control" placeholder="Your Answer" name="secAns" id="secAns" required autofocus>
 
               <button class="btn btn-primary btn-block btn-signin" type="submit">Create Account</button>
               
@@ -134,6 +134,7 @@
 <style>
     .navbar-default {
       background-color: #526579;
+      border-color:#526579;
     }
 
     .navbar-default .navbar-nav>li>a:hover, .navbar-default .navbar-nav>li>a:focus {
