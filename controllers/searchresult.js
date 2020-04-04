@@ -3,7 +3,6 @@ module.exports = function(async, Group, Users){
         SetRouting: function(router){
             router.get('/searchresult', this.getSearchResults);
             router.get('/get/members', this.getMembers);
-            router.get('/get/my-friends', this.getFriends);
 
             router.post('/searchresult', this.postSearchResults);
             router.post('/searchmembers', this.postMembers);
@@ -83,36 +82,6 @@ module.exports = function(async, Group, Users){
                     chunks: dataChunk
                 });
             })
-        },
-
-        getFriends: (req,res) => {
-            // async.parallel([
-            //     function(callback){      
-            //         Users.findById({_id:req.user._id}, (err, result) => {
-            //            callback(err, result); 
-            //         });
-            //     }
-            // ], (err, results) => {
-            //     const res1 = results[0];
-                
-            //     const dataChunk  = [];
-            //     const chunkSize = 4;
-            //     for (let i = 0; i < res1.length; i += chunkSize){
-            //         dataChunk.push(res1.slice(i, i+chunkSize));
-            //     }
-                
-            //     res.render('friendlist', {
-            //         user: req.user, 
-            //         chunks: dataChunk
-            //     });
-            // })
-            // Users.findById({_id:req.user._id})
-            //     .populate('friendsList')
-            //     .then((user) => {
-            //         res.render('friendlist', {
-            //             userFriends:user
-            //         })
-            //  })
         }
     }
 }
