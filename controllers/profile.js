@@ -265,7 +265,7 @@ module.exports = function(async, Users, Message, aws, formidable, FriendResult, 
         },
 
         changePassword: (req,res) => {
-            Users.findOne({secAns:req._user})
+            Users.findOne({secAns:req.user.secAns})
             .then((user) => {
                 user.password = user.encryptPassword(req.body.password1);
                 user.save((err,user) => {
@@ -273,7 +273,10 @@ module.exports = function(async, Users, Message, aws, formidable, FriendResult, 
                         throw err;
                     }
                     if(user){
-                        res.render('home')
+                        req.logout();
+                        req.session.destroy((err)=> {
+                            res.redirect('/');
+                    });
                     }
                 })
             })
