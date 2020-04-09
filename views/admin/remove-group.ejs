@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.7/cosmo/bootstrap.min.css">
+    <title>Dashboard</title>
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" type="text/css" rel="stylesheet">
+</head>
+<body>
+   
+       
+
+    <div id="top-nav" class="navbar navbar-default navbar-static-top">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/admin/dashboard">Chat Application</a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav navbar-right">
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" role="button" data-toggle="dropdown" href="#"><i class="fa fa-user-secret"></i> Admin: <%= user.username %></a>
+                        
+                    </li>
+                    <li><a href="/logout"><i class="fa fa-power-off"></i> Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- /container -->
+    </div>
+
+    <div class="col-lg-2 col-md-2 col-sm-3 col-xs-12">
+
+        <ul class="nav nav-pills nav-stacked" style="border-right:1px solid black">
+            <!--<li class="nav-header"></li>-->
+            <li><a href="/admin/dashboard"><i class="fa fa-dashboard"></i> Dashboard</a></li>
+            <li><a href="/admin/dashboard/2"><i class="fa fa-comments"></i> Manage Groups</a></li>
+            <li><a href="/admin/remove-group/"><i class="fa fa-group"></i> Remove Groups</a></li>
+    
+        </ul>
+    </div><!-- /span-3 -->
+    
+
+    
+    <div class="col-lg-10 col-md-10 col-sm-9 col-xs-12">
+        <!-- Right -->
+        <a href="/admin/dashboard/2" style="text-decoration: none;"><strong><span class="fa fa-dashboard"></span> My Dashboard</strong></a>
+        
+        <hr>
+
+        <h1 class="text-center">Welcome To Admin Panel </h1>
+
+        <div class="text-center">
+            <p>Please Select A Group To Remove Permanently</p>
+        </div>
+
+
+        <input type="hidden" value="<%= user.username %>" id="name-user">
+        <input type="hidden" value="<%= user.userImage %>" id="name-user">
+        <div class="">
+            <div class="row">
+                
+                    <div>
+                        <% _.forEach(chunks, function(val){ %>
+                        <div class="category-list">
+                            <div class="row">
+                                   <% _.forEach(val, function(val2){ %>
+                                <form action="/home" method="post" id="favourite">
+                                    <div class="item col-md-3">
+                                        <div class="thumbnail boxshadow">
+                                           <img src="https://realtime-chatapp.s3.us-east-2.amazonaws.com/<%= val2.image %>" alt="Group Photo">
+                                            <div class="caption">
+                                                <h4 class="text-center">
+                                                    <%= val2.name %> (<%=val2.followers.length %>)
+                                                   </h4>
+                                                
+                                                <div class="row">
+                                                    <div class="col-md-12">
+                                                        <p class="text-center">
+                                                               <%= val2.tagline %>
+                                                           
+                                                        </p>
+                                                       
+                                                    </div>
+                                                    
+                                                    <div class="col-md-12 text-center">
+                                                        
+                                                           <div class="btn-group" role="group" aria-label="...">
+                                                               
+                                                                   <input type="hidden" name="id" id="id" value="<%= val2._id %>">
+                                                                   <input type="hidden" name="groupName" id="group_Name" value="<%= val2.name %>">
+                                                             
+                                                           </div>
+                                                      
+                                                           <div class="btn-group" role="group" aria-label="...">
+                                                                   <a href="delete/<%= val2.name %>"><button type="button" class="btn btn-danger pull-right">Delete Group</button></a>
+                                                           </div>
+                                                      
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </form>
+                                <% }) %>
+                            </div>
+                        </div>
+                        <% }) %>
+                    </div>
+                </div>
+            </div>
+    </div>
+
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+    <script src="js/upload.js"></script>
+
+</body>
+</html>
+
+<style>
+    .navbar-inverse
+{
+    background:#00796B;
+    border-bottom-color: #004D40;
+}
+.navbar-inverse .navbar-nav>li>a,.navbar-inverse .navbar-brand,.navbar-inverse .navbar-nav>.dropdown>a .caret
+{
+    color: #fff;
+}
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:hover, .navbar-inverse .navbar-nav>.open>a:focus,
+.navbar-nav>li>.dropdown-menu
+{
+    background:#4DB6AC;
+}
+.nav-pills>li>a,
+{
+    color: #303F9F;
+}
+
+.nav>li>a:hover, .nav>li>a:focus
+{
+    background-color: #EEEEEE;
+}
+</style>
