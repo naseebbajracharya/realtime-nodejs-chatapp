@@ -1,9 +1,10 @@
-module.exports = function(formidable, Group, aws){
+module.exports = function(formidable, Group, aws, async, Users){
     return {
         SetRouting: function(router){
             //GET Route
             router.get('/admin/dashboard', this.adminPage);
             router.get('/admin/dashboard/2', this.adminPage2);
+            router.get('/admin/remove-group', this.getRemoveGroup);
 
             //POST Route
             router.post('/uploadFile', aws.Upload.any(), this.uploadFile);
@@ -52,6 +53,39 @@ module.exports = function(formidable, Group, aws){
             });
 
             form.parse(req);
+        },
+
+        getRemoveGroup: (req,res) => {
+            async.parallel([
+                function(callback){
+                    Group.find({}, (err, result) => {
+                        callback(err, result);
+                    })
+                },
+                function(callback){
+                    Users.findOne({'username': req.user.username})
+                    .populate('request.userId')
+                    .exec((err, result) => {
+                        callback(err, result);
+                    })
+                },
+            ], (err, results) => {
+                const res1 = results[0];
+                const res2 = results[1];
+                const res3 = results[2];
+                const dataChunk = [];
+                const chunkSize = 4; //to determine number of group results to be displayed in a row
+                for (let i = 0; i < res1.length; i+=chunkSize){
+                    dataChunk.push(res1.slice(i, i+chunkSize));
+                }
+
+                res.render('admin/remove-group', {
+                    user: req.user,
+                    chunks: dataChunk,
+                    data: res2,
+                    chat: res3
+                });
+            })
         }
     }
 }
