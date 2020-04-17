@@ -5,11 +5,14 @@ module.exports = function(formidable, Group, aws, async, Users){
             router.get('/admin/dashboard', this.adminPage);
             router.get('/admin/dashboard/2', this.adminPage2);
             router.get('/admin/remove-group', this.getRemoveGroup);
+            router.get('/delete/:id', this.deleteGroup);
 
             //POST Route
             router.post('/uploadFile', aws.Upload.any(), this.uploadFile);
 
             router.post('/dashboard', this.adminPostPage);
+
+            
         },
 
         adminPage: function(req,res){
@@ -86,6 +89,15 @@ module.exports = function(formidable, Group, aws, async, Users){
                     chat: res3
                 });
             })
+        },
+
+        deleteGroup: (req,res) => {
+            Group.deleteOne({_id:req.params.id})
+                .then(() => {
+                    res.redirect('/admin/dashboard');
+                }).catch((err) => {
+                    console.log(err);
+                })
         }
     }
 }
