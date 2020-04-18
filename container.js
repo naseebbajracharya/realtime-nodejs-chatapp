@@ -12,7 +12,8 @@ const simpleDependencies = [
     ['Users','./models/user'],
     ['Message','./models/message'],
     ['GroupMg', './models/gcmessage'],
-    ['aws', './helpers/aws']
+    ['aws', './helpers/aws'],
+    ['auth','./helpers/auth']
    
 ];
 
