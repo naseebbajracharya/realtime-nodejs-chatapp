@@ -1,13 +1,13 @@
-module.exports = function(async, Group, _, Users, Message, FriendResult){
+module.exports = function(async, Group, _, Users, Message, FriendResult, auth){
     return {
         SetRouting: function(router){
-            router.get('/home', this.homePage);
+            router.get('/home', auth.requireLogin, this.homePage);
 
-            router.post('/home', this.postHomePage)
+            router.post('/home', auth.requireLogin, this.postHomePage)
 
             router.get('/logout', this.logout);
         },
-        homePage: function(req,res){
+        homePage:  (req,res) => {
             async.parallel([
                 function(callback){
                     Group.find({}, (err, result) => {
