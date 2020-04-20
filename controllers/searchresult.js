@@ -1,11 +1,11 @@
-module.exports = function(async, Group, Users){
+module.exports = function(async, Group, Users, auth){
     return {
         SetRouting: function(router){
-            router.get('/searchresult', this.getSearchResults);
-            router.get('/get/members', this.getMembers);
+            router.get('/searchresult', auth.requireLogin, this.getSearchResults);
+            router.get('/get/members', auth.requireLogin, this.getMembers);
 
-            router.post('/searchresult', this.postSearchResults);
-            router.post('/searchmembers', this.postMembers);
+            router.post('/searchresult',auth.requireLogin, this.postSearchResults);
+            router.post('/searchmembers', auth.requireLogin, this.postMembers);
         },
 
         getSearchResults: (req,res) => {
