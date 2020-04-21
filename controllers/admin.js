@@ -1,10 +1,10 @@
-module.exports = function(formidable, Group, aws, async, Users){
+module.exports = function(formidable, Group, aws, async, Users, auth){
     return {
         SetRouting: function(router){
             //GET Route
-            router.get('/admin/dashboard', this.adminPage);
-            router.get('/admin/dashboard/2', this.adminPage2);
-            router.get('/admin/remove-group', this.getRemoveGroup);
+            router.get('/admin/dashboard', auth.requireLogin, this.adminPage);
+            router.get('/admin/dashboard/2',auth.requireLogin, this.adminPage2);
+            router.get('/admin/remove-group', auth.requireLogin, this.getRemoveGroup);
             router.get('/delete/:id', this.deleteGroup);
 
             //POST Route
