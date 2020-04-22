@@ -5,12 +5,12 @@ module.exports = function(formidable, Group, aws, async, Users, auth){
             router.get('/admin/dashboard', auth.requireLogin, this.adminPage);
             router.get('/admin/dashboard/2',auth.requireLogin, this.adminPage2);
             router.get('/admin/remove-group', auth.requireLogin, this.getRemoveGroup);
-            router.get('/delete/:id', this.deleteGroup);
+            router.get('/delete/:id', auth.requireLogin, this.deleteGroup);
 
             //POST Route
             router.post('/uploadFile', aws.Upload.any(), this.uploadFile);
 
-            router.post('/dashboard', this.adminPostPage);
+            router.post('/dashboard',auth.requireLogin, this.adminPostPage);
 
             
         },
