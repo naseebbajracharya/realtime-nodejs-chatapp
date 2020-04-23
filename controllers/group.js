@@ -1,9 +1,9 @@
-module.exports = function(Users, async, Message, FriendResult, GroupMg){
+module.exports = function(Users, async, Message, FriendResult, GroupMg, auth){
     return {
         SetRouting: function(router){
             //GET Route
-            router.get('/group/:name', this.groupPage);
-            router.get('/view-profile/:name', this.getVisitorProfile);
+            router.get('/group/:name', auth.requireLogin, this.groupPage);
+            router.get('/view-profile/:name', auth.requireLogin, this.getVisitorProfile);
 
             //POST Route
             router.post('/group/:name', this.groupPostPage);
