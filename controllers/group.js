@@ -6,7 +6,7 @@ module.exports = function(Users, async, Message, FriendResult, GroupMg, auth){
             router.get('/view-profile/:name', auth.requireLogin, this.getVisitorProfile);
 
             //POST Route
-            router.post('/group/:name', this.groupPostPage);
+            router.post('/group/:name', auth.requireLogin, this.groupPostPage);
             router.get('/logout', this.logout);
         },
         groupPage: (req,res) => {
