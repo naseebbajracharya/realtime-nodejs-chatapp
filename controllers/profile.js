@@ -7,8 +7,8 @@ module.exports = function(async, Users, Message, aws, formidable, FriendResult, 
             router.get('/set/settings', this.profileSetting);
 
             router.post('/userupload', aws.Upload.any(), this.postUserPhoto);
-            router.post('/set/profile', this.postMyProfile);
-            router.post('/set/my-profile/:name', this.viewProfilePage);
+            router.post('/set/profile',auth.requireLogin, this.postMyProfile);
+            router.post('/set/my-profile/:name', auth.requireLogin, this.viewProfilePage);
             router.post('/settings/deactivate-account', this.deactivateAccount);
             router.post('/user/:name/change-password', this.changePassword);
         },
