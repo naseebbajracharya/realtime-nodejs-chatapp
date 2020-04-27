@@ -4,9 +4,9 @@ module.exports = function(async, Users, Message, aws, formidable, FriendResult, 
         SetRouting: function(router){
             router.get('/set/profile', auth.requireLogin, this.getMyProfile);
             router.get('/set/my-profile/:name', auth.requireLogin, this.viewProfile);
-            router.get('/set/settings', this.profileSetting);
+            router.get('/set/settings', auth.requireLogin, this.profileSetting);
 
-            router.post('/userupload', aws.Upload.any(), this.postUserPhoto);
+            router.post('/userupload', aws.Upload.any(), auth.requireLogin, this.postUserPhoto);
             router.post('/set/profile',auth.requireLogin, this.postMyProfile);
             router.post('/set/my-profile/:name', auth.requireLogin, this.viewProfilePage);
             router.post('/settings/deactivate-account', this.deactivateAccount);
