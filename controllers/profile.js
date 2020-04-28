@@ -9,7 +9,7 @@ module.exports = function(async, Users, Message, aws, formidable, FriendResult, 
             router.post('/userupload', aws.Upload.any(), auth.requireLogin, this.postUserPhoto);
             router.post('/set/profile',auth.requireLogin, this.postMyProfile);
             router.post('/set/my-profile/:name', auth.requireLogin, this.viewProfilePage);
-            router.post('/settings/deactivate-account', this.deactivateAccount);
+            router.post('/settings/deactivate-account', auth.requireLogin, this.deactivateAccount);
             router.post('/user/:name/change-password', this.changePassword);
         },
 
