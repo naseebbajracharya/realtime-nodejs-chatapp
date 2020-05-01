@@ -2,7 +2,7 @@ module.exports = function(async, Users, Message, FriendResult, auth){
     return {
         SetRouting: function(router){
             router.get('/chat/:name', auth.requireLogin, this.getchatPage);
-            router.post('/chat/:name', this.chatPostPage);
+            router.post('/chat/:name',auth.requireLogin, this.chatPostPage);
         },
 
         getchatPage: function(req, res){
