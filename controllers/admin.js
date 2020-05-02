@@ -8,7 +8,7 @@ module.exports = function(formidable, Group, aws, async, Users, auth){
             router.get('/delete/:id', auth.requireLogin, this.deleteGroup);
 
             //POST Route
-            router.post('/uploadFile', aws.Upload.any(), this.uploadFile);
+            router.post('/uploadFile', aws.Upload.any(), auth.requireLogin, this.uploadFile);
 
             router.post('/dashboard',auth.requireLogin, this.adminPostPage);
 
