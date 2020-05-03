@@ -1,7 +1,5 @@
 ***RealTime Chat Application***
 
-# UNDER DEVELOPMENT
-
 ![](screencapture-chat.png)
 
 **Technologies Used**
